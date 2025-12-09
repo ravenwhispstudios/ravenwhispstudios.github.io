@@ -7,15 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --bg: #050510;
-            --bg2: #131327;
-            --accent: #a879ff;
-            --accent-soft: rgba(168, 121, 255, 0.25);
-            --text-main: #f5f5ff;
-            --text-muted: #bbbbd9;
-            --card: rgba(9, 9, 22, 0.9);
+            --bg: #05030b;
+            --bg2: #14081f;
+            --accent: #c46bff;
+            --accent-soft: rgba(196, 107, 255, 0.28);
+            --accent-blood: #b0303b;
+            --gold-muted: #d6b26b;
+            --text-main: #f5f2ff;
+            --text-muted: #a89ac8;
+            --card: rgba(10, 6, 22, 0.96);
             --border-subtle: rgba(255, 255, 255, 0.06);
-            --shadow-soft: 0 22px 45px rgba(0, 0, 0, 0.55);
+            --shadow-soft: 0 22px 45px rgba(0, 0, 0, 0.75);
         }
 
         * {
@@ -30,7 +32,9 @@
 
         body {
             font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-            background: radial-gradient(circle at top, var(--bg2) 0, var(--bg) 55%, #020208 100%);
+            background:
+                radial-gradient(circle at top, var(--bg2) 0, var(--bg) 55%, #020207 100%),
+                radial-gradient(circle at bottom, #1b050b 0, transparent 60%);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -41,17 +45,20 @@
 
         .page {
             width: 100%;
-            max-width: 1080px;
+            max-width: 1120px;
             margin: auto;
         }
 
         .shell {
-            background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(0,0,0,0.75));
+            background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(0,0,0,0.9));
             border-radius: 32px;
-            padding: 28px 26px 32px;
+            padding: 22px 26px 20px;
             border: 1px solid var(--border-subtle);
             box-shadow: var(--shadow-soft);
             backdrop-filter: blur(18px);
+            display: flex;
+            flex-direction: column;
+            min-height: calc(100vh - 48px);
         }
 
         header {
@@ -59,7 +66,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 18px;
-            margin-bottom: 26px;
+            margin-bottom: 18px;
         }
 
         .logo-mark {
@@ -69,10 +76,12 @@
         }
 
         .raven-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 100px;
-            background: radial-gradient(circle at 30% 0, #ffffff, #a879ff 30%, #1b1b3a 75%);
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            background:
+                radial-gradient(circle at 25% 0, #ffffff, #e3cfff 22%, #8d4cff 38%, #190b33 70%),
+                radial-gradient(circle at 80% 120%, #ff6644, transparent 60%);
             position: relative;
             overflow: hidden;
         }
@@ -81,17 +90,17 @@
         .raven-icon::after {
             content: "";
             position: absolute;
-            inset: 8px 6px;
+            inset: 7px 5px;
             border-radius: 999px;
-            border: 2px solid rgba(5, 5, 16, 0.9);
+            border: 2px solid rgba(5, 5, 16, 0.95);
             border-top-color: transparent;
             border-left-color: transparent;
-            transform: rotate(-35deg);
+            transform: rotate(-38deg);
         }
 
         .raven-icon::after {
             inset: 12px 10px;
-            opacity: 0.65;
+            opacity: 0.7;
         }
 
         .brand-title {
@@ -102,7 +111,7 @@
         .brand-title span:first-child {
             font-size: 1.35rem;
             font-weight: 700;
-            letter-spacing: 0.14em;
+            letter-spacing: 0.16em;
             text-transform: uppercase;
         }
 
@@ -116,16 +125,17 @@
         nav {
             display: flex;
             gap: 16px;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             text-transform: uppercase;
-            letter-spacing: 0.14em;
+            letter-spacing: 0.18em;
         }
 
         nav a {
             color: var(--text-muted);
             text-decoration: none;
             position: relative;
-            padding-bottom: 3px;
+            padding-bottom: 4px;
+            cursor: pointer;
         }
 
         nav a::after {
@@ -135,39 +145,43 @@
             bottom: 0;
             height: 2px;
             width: 0;
-            background: linear-gradient(90deg, var(--accent), #ffb86c);
+            background: linear-gradient(90deg, var(--accent), var(--gold-muted));
             transition: width 0.2s ease-out;
         }
 
-        nav a:hover {
+        nav a.active {
             color: var(--text-main);
         }
 
-        nav a:hover::after {
+        nav a.active::after {
             width: 100%;
         }
 
-        .layout {
+        .content-area {
+            flex: 1;
+            display: flex;
+            align-items: stretch;
+        }
+
+        .view {
+            display: none;
+            width: 100%;
+        }
+
+        .view.active {
             display: grid;
             grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
             gap: 22px;
+            align-items: stretch;
         }
 
-        @media (max-width: 820px) {
-            .layout {
-                grid-template-columns: 1fr;
-            }
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-        }
-
+        /* Studio layout reuses hero + cards */
         .hero {
-            background: radial-gradient(circle at top left, var(--accent-soft), transparent 55%),
-                        radial-gradient(circle at bottom right, rgba(255, 184, 108, 0.18), transparent 55%);
+            background:
+                radial-gradient(circle at top left, var(--accent-soft), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(176, 47, 75, 0.25), transparent 60%);
             border-radius: 26px;
-            padding: 26px 22px 24px;
+            padding: 24px 22px 22px;
             border: 1px solid rgba(255, 255, 255, 0.06);
             position: relative;
             overflow: hidden;
@@ -178,42 +192,42 @@
             position: absolute;
             inset: -40%;
             background-image:
-                radial-gradient(circle at 10% 10%, rgba(255,255,255,0.06) 0, transparent 55%),
-                radial-gradient(circle at 80% 70%, rgba(12, 12, 32, 0.75) 0, transparent 55%);
+                radial-gradient(circle at 10% 10%, rgba(255,255,255,0.05) 0, transparent 55%),
+                radial-gradient(circle at 80% 70%, rgba(10, 3, 30, 0.9) 0, transparent 55%);
             mix-blend-mode: soft-light;
-            opacity: 0.8;
+            opacity: 0.9;
             pointer-events: none;
         }
 
         .hero-tagline {
-            font-size: 0.78rem;
-            letter-spacing: 0.25em;
+            font-size: 0.76rem;
+            letter-spacing: 0.28em;
             text-transform: uppercase;
             color: var(--text-muted);
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             position: relative;
             z-index: 1;
         }
 
         .hero-title {
-            font-size: clamp(2.2rem, 4vw, 2.8rem);
-            line-height: 1.1;
+            font-size: clamp(2.1rem, 4vw, 2.6rem);
+            line-height: 1.15;
             margin-bottom: 10px;
             position: relative;
             z-index: 1;
         }
 
         .hero-title span {
-            background: linear-gradient(120deg, #ffffff, #d2c4ff, #ffb86c);
+            background: linear-gradient(120deg, #ffffff, #f2e6ff, #e29a5f);
             -webkit-background-clip: text;
             color: transparent;
         }
 
         .hero-sub {
-            font-size: 0.98rem;
+            font-size: 0.96rem;
             color: var(--text-muted);
             max-width: 480px;
-            margin-bottom: 18px;
+            margin-bottom: 16px;
             position: relative;
             z-index: 1;
         }
@@ -226,7 +240,7 @@
         .hero-actions {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             align-items: center;
             position: relative;
             z-index: 1;
@@ -236,9 +250,9 @@
             border-radius: 999px;
             border: none;
             cursor: pointer;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 600;
-            padding: 10px 22px;
+            padding: 9px 20px;
             text-transform: uppercase;
             letter-spacing: 0.16em;
             display: inline-flex;
@@ -247,9 +261,9 @@
         }
 
         .btn-primary {
-            background: radial-gradient(circle at top left, #ffffff, #c2a5ff 40%, #a879ff 100%);
-            color: #141322;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.55);
+            background: radial-gradient(circle at top left, #ffffff, #d2b2ff 40%, #c46bff 100%);
+            color: #1a102b;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.65);
         }
 
         .btn-primary span.arrow {
@@ -270,8 +284,8 @@
         .meta {
             display: flex;
             gap: 16px;
-            margin-top: 16px;
-            font-size: 0.78rem;
+            margin-top: 14px;
+            font-size: 0.76rem;
             text-transform: uppercase;
             letter-spacing: 0.18em;
             color: var(--text-muted);
@@ -289,31 +303,32 @@
             width: 6px;
             height: 6px;
             border-radius: 999px;
-            background: var(--accent);
+            background: var(--accent-blood);
         }
 
         .card {
             background: var(--card);
             border-radius: 22px;
-            padding: 18px 18px 20px;
+            padding: 16px 17px 18px;
             border: 1px solid var(--border-subtle);
         }
 
         .card + .card {
-            margin-top: 12px;
+            margin-top: 10px;
         }
 
         .card-heading {
-            font-size: 0.9rem;
+            font-size: 0.86rem;
             color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.16em;
-            margin-bottom: 6px;
+            margin-bottom: 4px;
         }
 
         .card-title {
-            font-size: 1.05rem;
-            margin-bottom: 6px;
+            font-size: 1.02rem;
+            margin-bottom: 5px;
+            color: var(--gold-muted);
         }
 
         .card-body {
@@ -324,35 +339,35 @@
         .pill-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 10px;
+            gap: 7px;
+            margin-top: 9px;
         }
 
         .pill {
-            font-size: 0.75rem;
+            font-size: 0.74rem;
             text-transform: uppercase;
             letter-spacing: 0.16em;
             border-radius: 999px;
-            padding: 4px 10px;
+            padding: 3px 9px;
             border: 1px solid rgba(255,255,255,0.15);
             color: var(--text-muted);
         }
 
         .pill.highlight {
             border-color: var(--accent);
-            color: #e4d7ff;
-            background: rgba(168, 121, 255, 0.08);
+            color: #f0e4ff;
+            background: rgba(196, 107, 255, 0.08);
         }
 
         .list-compact {
-            margin-top: 6px;
+            margin-top: 5px;
             list-style: none;
             font-size: 0.86rem;
             color: var(--text-muted);
         }
 
         .list-compact li {
-            margin-top: 4px;
+            margin-top: 3px;
         }
 
         .list-compact li::before {
@@ -363,15 +378,15 @@
         .social-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 10px;
+            gap: 8px;
+            margin-top: 9px;
         }
 
         .social-link {
-            font-size: 0.86rem;
+            font-size: 0.84rem;
             text-decoration: none;
             color: var(--text-main);
-            padding: 6px 10px;
+            padding: 5px 9px;
             border-radius: 999px;
             border: 1px solid rgba(255,255,255,0.14);
             display: inline-flex;
@@ -381,15 +396,152 @@
 
         .social-link span.icon {
             font-size: 1rem;
-            opacity: 0.9;
+        }
+
+        .social-link.linkedin span.icon {
+            color: #0a66c2;
+        }
+
+        .social-link.x span.icon {
+            color: #000000;
+            background: #ffffff;
+            border-radius: 999px;
+            padding: 0 4px;
+        }
+
+        .social-link.instagram span.icon {
+            background: linear-gradient(135deg, #f58529, #feda77, #dd2a7b, #8134af, #515bd4);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .social-link.youtube span.icon {
+            color: #ff0000;
         }
 
         .social-link:hover {
             border-color: var(--accent);
         }
 
+        /* Project view */
+        .view-project.active {
+            grid-template-columns: minmax(0, 3.2fr) minmax(0, 2fr);
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .game-title {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+        }
+
+        .game-title span {
+            color: var(--gold-muted);
+        }
+
+        .paragraph {
+            font-size: 0.92rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .paragraph strong {
+            color: var(--text-main);
+        }
+
+        .tag-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            padding: 3px 8px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.16);
+            color: var(--text-muted);
+        }
+
+        .tag.combat {
+            border-color: var(--accent-blood);
+            color: #f7dde1;
+        }
+
+        /* Contact view */
+        .contact-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 2.4fr) minmax(0, 2.4fr);
+            gap: 22px;
+            width: 100%;
+        }
+
+        .view-contact.active {
+            display: block;
+        }
+
+        .contact-layout > section {
+            background: var(--card);
+            border-radius: 22px;
+            padding: 16px 18px 18px;
+            border: 1px solid var(--border-subtle);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 6px;
+        }
+
+        label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--text-muted);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            margin-top: 4px;
+            background: rgba(4, 4, 12, 0.9);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 7px 9px;
+            color: var(--text-main);
+            font-family: inherit;
+            font-size: 0.9rem;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+            max-height: 130px;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        .btn-submit {
+            align-self: flex-start;
+            margin-top: 4px;
+        }
+
         footer {
-            margin-top: 16px;
+            margin-top: 10px;
             text-align: right;
             font-size: 0.72rem;
             color: var(--text-muted);
@@ -397,18 +549,38 @@
 
         footer .footer-tagline {
             display: block;
-            margin-top: 4px;
+            margin-top: 3px;
             font-size: 0.7rem;
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 900px) {
+            .view.active {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
             body {
                 padding: 14px;
             }
             .shell {
-                padding: 20px 16px 22px;
+                padding: 18px 16px 18px;
                 border-radius: 22px;
+            }
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            nav {
+                font-size: 0.78rem;
+            }
+            .content-area {
+                margin-top: 4px;
+            }
+            .contact-layout {
+                grid-template-columns: 1fr;
             }
             footer {
                 text-align: left;
@@ -428,101 +600,257 @@
                 </div>
             </div>
             <nav>
-                <a href="#about">Studio</a>
-                <a href="#project">Project</a>
-                <a href="#contact">Contact</a>
+                <a data-view="studio" class="active">Studio</a>
+                <a data-view="project">Project</a>
+                <a data-view="contact">Contact</a>
             </nav>
         </header>
 
-        <main class="layout">
-            <!-- LEFT: HERO -->
-            <section class="hero" id="about">
-                <div class="hero-tagline">We craft atmospheric worlds</div>
-                <h1 class="hero-title">
-                    Story-driven games<br />
-                    <span>bound by mystery &amp; death.</span>
-                </h1>
-                <p class="hero-sub">
-                    Ravenwhisp Studios is a small team focused on
-                    <strong>narrative-driven, emotionally charged</strong> experiences
-                    with a dark, fantastical tone.
-                </p>
+        <div class="content-area">
+            <!-- STUDIO VIEW -->
+            <section class="view view-studio active" id="studio">
+                <section class="hero">
+                    <div class="hero-tagline">Dark fantasy • Independent vision</div>
+                    <h1 class="hero-title">
+                        Story-driven games<br />
+                        <span>for those who walk with shadows.</span>
+                    </h1>
+                    <p class="hero-sub">
+                        Ravenwhisp Studios is a small team crafting
+                        <strong>dark fantasy worlds</strong> where choices have weight
+                        and every encounter whispers of forgotten pacts and broken oaths.
+                    </p>
 
-                <div class="hero-actions">
-                    <button class="btn btn-primary" onclick="document.getElementById('project').scrollIntoView({behavior:'smooth'});">
-                        DISCOVER THE GAME
-                        <span class="arrow">↗</span>
-                    </button>
-                    <button class="btn btn-ghost" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'});">
-                        CONTACT
-                    </button>
-                </div>
+                    <div class="hero-actions">
+                        <button class="btn btn-primary" data-jump="project">
+                            DISCOVER BOUND BY DEATH
+                            <span class="arrow">↗</span>
+                        </button>
+                        <button class="btn btn-ghost" data-jump="contact">
+                            CONTACT
+                        </button>
+                    </div>
 
-                <div class="meta">
-                    <span><span class="dot"></span> Based in Europe</span>
-                    <span>Co-op · Isometric · Fantasy</span>
-                </div>
+                    <div class="meta">
+                        <span><span class="dot"></span> Based in Europe</span>
+                        <span>Co-op • Isometric • Dark Fantasy</span>
+                    </div>
+                </section>
+
+                <aside>
+                    <section class="card">
+                        <div class="card-heading">Current project</div>
+                        <div class="card-title">Bound By Death</div>
+                        <div class="card-body">
+                            A cooperative isometric hack &amp; slash where you play as
+                            <strong>Lýriel</strong>, a young elf bound to <strong>Death</strong> by a forbidden ritual.
+                            Together, they must face a kingdom that fears them as much
+                            as it needs them.
+                            <ul class="list-compact">
+                                <li>Fast-paced melee combat and synergies between Lýriel &amp; <strong>Death</strong></li>
+                                <li>Exploration of cursed elven ruins and ritual chambers</li>
+                                <li>Focus on atmosphere, lore and emotional storytelling</li>
+                            </ul>
+                            <div class="pill-row">
+                                <span class="pill highlight">PC prototype</span>
+                                <span class="pill">Vertical slice</span>
+                                <span class="pill">Early development</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <div class="card-heading">Follow the ravens</div>
+                        <div class="card-body">
+                            Stay close for development updates, behind-the-scenes looks,
+                            and new glimpses into the world of <strong>Bound By Death</strong>.
+                            <div class="social-row">
+                                <a href="#" class="social-link linkedin" target="_blank" rel="noopener">
+                                    <span class="icon">in</span> LinkedIn
+                                </a>
+                                <a href="#" class="social-link x" target="_blank" rel="noopener">
+                                    <span class="icon">𝕏</span> Twitter / X
+                                </a>
+                                <a href="#" class="social-link instagram" target="_blank" rel="noopener">
+                                    <span class="icon">◎</span> Instagram
+                                </a>
+                                <a href="#" class="social-link youtube" target="_blank" rel="noopener">
+                                    <span class="icon">▶</span> YouTube
+                                </a>
+                            </div>
+                        </div>
+                    </section>
+                </aside>
             </section>
 
-            <!-- RIGHT: SIDEBAR CARDS -->
-            <aside>
-                <section class="card" id="project">
-                    <div class="card-heading">Current project</div>
-                    <div class="card-title">Bound by Death</div>
-                    <div class="card-body">
-                        A cooperative isometric adventure where you play as
-                        <strong>Lýriel</strong>, a girl unnaturally bound to Death itself.
-                        Explore a world twisted by forbidden rituals and broken oaths.
-                        <ul class="list-compact">
-                            <li>Story-driven co-op gameplay</li>
-                            <li>Dark elven kingdom &amp; corrupted rituals</li>
-                            <li>Focus on atmosphere, lore and tension</li>
-                        </ul>
-                        <div class="pill-row">
-                            <span class="pill highlight">PC prototype</span>
-                            <span class="pill">Vertical slice</span>
-                            <span class="pill">Early development</span>
-                        </div>
+            <!-- PROJECT VIEW -->
+            <section class="view view-project" id="project">
+                <section>
+                    <div class="section-title">Project</div>
+                    <h2 class="game-title"><span>Bound By Death</span></h2>
+                    <p class="paragraph">
+                        In the elven kingdom of Lýndoril, a desperate king defied the natural order
+                        to save his newborn daughter, Lýriel. A forbidden ritual chained her soul
+                        to <strong>Death</strong> itself, turning the reaper into her eternal shadow.
+                        Years later, kingdom and daughter both pay the price of that choice.
+                    </p>
+                    <p class="paragraph">
+                        <strong>Bound By Death</strong> is a cooperative isometric hack &amp; slash focused on
+                        tight combat and narrative. One player controls Lýriel, agile and precise,
+                        while the other embodies <strong>Death</strong>, a spectral force that bends the battlefield
+                        with area control, executions and terrifying presence.
+                    </p>
+                    <p class="paragraph">
+                        Together they explore ritual chambers, haunted forests and war-torn cities,
+                        hunted by those who fear what they have become. Lýriel seeks a way to reclaim
+                        her own life; <strong>Death</strong> seeks balance in a world that has tried to cheat it.
+                    </p>
+                    <div class="tag-row">
+                        <span class="tag combat">Co-op hack &amp; slash</span>
+                        <span class="tag">Isometric camera</span>
+                        <span class="tag">Dark fantasy narrative</span>
+                        <span class="tag">PC prototype</span>
                     </div>
                 </section>
 
-                <section class="card" id="contact">
-                    <div class="card-heading">Stay connected</div>
-                    <div class="card-body">
-                        Follow Ravenwhisp Studios for development updates,
-                        behind-the-scenes looks and prototype footage.
-                        <div class="social-row">
-                            <a href="#" class="social-link" target="_blank" rel="noopener">
-                                <span class="icon">in</span> LinkedIn
-                            </a>
-                            <a href="#" class="social-link" target="_blank" rel="noopener">
-                                <span class="icon">𝕏</span> Twitter / X
-                            </a>
-                            <a href="#" class="social-link" target="_blank" rel="noopener">
-                                <span class="icon">◎</span> Instagram
-                            </a>
-                            <a href="#" class="social-link" target="_blank" rel="noopener">
-                                <span class="icon">▶</span> YouTube
-                            </a>
+                <aside>
+                    <section class="card">
+                        <div class="card-heading">Gameplay pillars</div>
+                        <div class="card-body">
+                            <ul class="list-compact">
+                                <li><strong>Duo combat:</strong> intertwined abilities between Lýriel &amp; <strong>Death</strong></li>
+                                <li><strong>Risk &amp; reward:</strong> powerful rituals with a lasting cost</li>
+                                <li><strong>Co-op first:</strong> designed to be experienced together</li>
+                                <li><strong>Atmosphere:</strong> strong art direction and soundscape</li>
+                            </ul>
                         </div>
-                        <div style="margin-top:10px;font-size:0.8rem;color:var(--text-muted);">
-                            Business contact: <strong>ravenwhisp.studios@gmail.com</strong>
+                    </section>
+                    <section class="card">
+                        <div class="card-heading">Target experience</div>
+                        <div class="card-body">
+                            A short, replayable adventure where each run reveals more
+                            about the pact between Lýriel and <strong>Death</strong>, and the true
+                            consequences of binding a mortal soul to the inevitable.
                         </div>
-                    </div>
-                </section>
-            </aside>
-        </main>
+                    </section>
+                </aside>
+            </section>
+
+            <!-- CONTACT VIEW -->
+            <section class="view view-contact" id="contact">
+                <div class="contact-layout">
+                    <section>
+                        <div class="section-title">Contact</div>
+                        <h2 class="game-title"><span>Reach Ravenwhisp Studios</span></h2>
+                        <p class="paragraph">
+                            For collaboration, feedback or press inquiries about
+                            <strong>Bound By Death</strong> or future projects, you can send us a message
+                            directly through this form. Your message will be delivered to:
+                            <strong>ravenwhispstudios@gmail.com</strong>.
+                        </p>
+
+                        <form action="mailto:ravenwhispstudios@gmail.com" method="POST" enctype="text/plain">
+                            <div>
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="Name" required />
+                            </div>
+                            <div>
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="Email" required />
+                            </div>
+                            <div>
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="Subject" />
+                            </div>
+                            <div>
+                                <label for="message">Message</label>
+                                <textarea id="message" name="Message" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-submit">
+                                Send message
+                            </button>
+                        </form>
+                    </section>
+
+                    <section>
+                        <div class="card-heading">Direct details</div>
+                        <div class="card-body" style="margin-top:4px;">
+                            <p class="paragraph">
+                                <strong>Email:</strong> ravenwhispstudios@gmail.com<br />
+                                <strong>Studio:</strong> Ravenwhisp Studios<br />
+                                <strong>Focus:</strong> Dark fantasy, narrative-driven co-op games.
+                            </p>
+                            <p class="paragraph">
+                                We are currently focused on building the prototype of
+                                <strong>Bound By Death</strong>. We are open to feedback from players,
+                                fellow developers, and potential partners interested in
+                                atmospheric co-op action games.
+                            </p>
+                            <p class="paragraph">
+                                You can also reach us via our social channels listed on the
+                                <strong>Studio</strong> page.
+                            </p>
+                        </div>
+                    </section>
+                </div>
+            </section>
+        </div>
 
         <footer>
             © <span id="year"></span> Ravenwhisp Studios — All rights reserved.
-            <span class="footer-tagline">Two ravens, one fate.</span>
+            <span class="footer-tagline">Two ravens, one fate. Bound By Death.</span>
         </footer>
     </div>
 </div>
 
 <script>
-    // Simple year update, no frameworks.
+    // Update year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Simple tab system
+    const views = {
+        studio: document.getElementById("studio"),
+        project: document.getElementById("project"),
+        contact: document.getElementById("contact")
+    };
+
+    const navLinks = document.querySelectorAll("nav a");
+    const jumpButtons = document.querySelectorAll("[data-jump]");
+
+    function setActiveView(name) {
+        Object.keys(views).forEach(key => {
+            if (key === name) {
+                views[key].classList.add("active");
+                views[key].classList.contains("view-contact")
+                    ? views[key].classList.add("view-contact-active")
+                    : null;
+            } else {
+                views[key].classList.remove("active");
+            }
+        });
+
+        navLinks.forEach(link => {
+            if (link.dataset.view === name) {
+                link.classList.add("active");
+            } else {
+                link.classList.remove("active");
+            }
+        });
+    }
+
+    navLinks.forEach(link => {
+        link.addEventListener("click", () => {
+            const target = link.dataset.view;
+            setActiveView(target);
+        });
+    });
+
+    jumpButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const target = btn.dataset.jump;
+            setActiveView(target);
+        });
+    });
 </script>
 </body>
 </html>
