@@ -75,40 +75,11 @@
             gap: 12px;
         }
 
-        /* Logo: “cuervo” en violeta/verde */
-        .raven-icon {
-            width: 46px;
-            height: 46px;
-            border-radius: 999px;
-            background:
-                radial-gradient(circle at 20% 0, #ffffff, #e9ddff 18%, #a855f7 32%, #111827 68%),
-                radial-gradient(circle at 90% 110%, #22c55e, transparent 60%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .raven-icon::before {
-            content: "";
-            position: absolute;
-            width: 140%;
-            height: 70%;
-            left: -18%;
-            top: 26%;
-            border-radius: 999px;
-            background: linear-gradient(120deg, #020617, #111827);
-            transform: rotate(-18deg);
-        }
-
-        .raven-icon::after {
-            content: "";
-            position: absolute;
-            width: 40%;
-            height: 40%;
-            right: -4%;
-            top: 22%;
-            border-radius: 999px;
-            background: linear-gradient(130deg, #020617, #0f172a);
-            box-shadow: -6px 2px 12px rgba(0,0,0,0.9);
+        /* Logo imagen */
+        .logo-image {
+            height: 56px;
+            width: auto;
+            display: block;
         }
 
         .brand-title {
@@ -308,6 +279,22 @@
             height: 6px;
             border-radius: 999px;
             background: var(--accent-green);
+        }
+
+        /* Logo grande dentro del hero */
+        .hero-logo-wrap {
+            margin-top: 18px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        .hero-logo {
+            max-width: 260px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.8));
         }
 
         .card {
@@ -597,6 +584,9 @@
             .view.active {
                 grid-template-columns: 1fr;
             }
+            .hero-logo-wrap {
+                justify-content: center;
+            }
         }
 
         @media (max-width: 650px) {
@@ -626,7 +616,8 @@
     <div class="shell">
         <header>
             <div class="logo-mark">
-                <div class="raven-icon"></div>
+                <!-- Logo arriba a la izquierda -->
+                <img src="ravenwhisp-logo.png" alt="Ravenwhisp Studios logo" class="logo-image">
                 <div class="brand-title">
                     <span>Ravenwhisp</span>
                     <span>Independent Game Studio</span>
@@ -668,6 +659,11 @@
                     <div class="meta">
                         <span><span class="dot"></span> Based in Europe</span>
                         <span>Co-op • Isometric • Dark Fantasy</span>
+                    </div>
+
+                    <!-- Logo grande dentro del hero -->
+                    <div class="hero-logo-wrap">
+                        <img src="ravenwhisp-logo.png" alt="Ravenwhisp Studios logo" class="hero-logo">
                     </div>
                 </section>
 
