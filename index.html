@@ -7,17 +7,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --bg: #05030b;
-            --bg2: #14081f;
-            --accent: #c46bff;
-            --accent-soft: rgba(196, 107, 255, 0.28);
-            --accent-blood: #b0303b;
-            --gold-muted: #d6b26b;
-            --text-main: #f5f2ff;
-            --text-muted: #a89ac8;
-            --card: rgba(10, 6, 22, 0.96);
-            --border-subtle: rgba(255, 255, 255, 0.06);
-            --shadow-soft: 0 22px 45px rgba(0, 0, 0, 0.75);
+            --bg: #03040a;
+            --bg2: #12061c;
+            --accent-violet: #a855f7;
+            --accent-green: #22c55e;
+            --accent-soft-violet: rgba(168, 85, 247, 0.25);
+            --accent-soft-green: rgba(34, 197, 94, 0.18);
+            --text-main: #f9f9ff;
+            --text-muted: #c0c4ff;
+            --card: rgba(7, 8, 20, 0.96);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --shadow-soft: 0 22px 45px rgba(0, 0, 0, 0.8);
         }
 
         * {
@@ -34,7 +34,7 @@
             font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
             background:
                 radial-gradient(circle at top, var(--bg2) 0, var(--bg) 55%, #020207 100%),
-                radial-gradient(circle at bottom, #1b050b 0, transparent 60%);
+                radial-gradient(circle at bottom, #020b07 0, transparent 60%);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
@@ -50,12 +50,12 @@
         }
 
         .shell {
-            background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(0,0,0,0.9));
+            background: linear-gradient(145deg, rgba(255,255,255,0.02), rgba(0,0,0,0.92));
             border-radius: 32px;
-            padding: 22px 26px 20px;
+            padding: 22px 26px 18px;
             border: 1px solid var(--border-subtle);
             box-shadow: var(--shadow-soft);
-            backdrop-filter: blur(18px);
+            backdrop-filter: blur(20px);
             display: flex;
             flex-direction: column;
             min-height: calc(100vh - 48px);
@@ -75,32 +75,40 @@
             gap: 12px;
         }
 
+        /* Logo: “cuervo” en violeta/verde */
         .raven-icon {
-            width: 44px;
-            height: 44px;
+            width: 46px;
+            height: 46px;
             border-radius: 999px;
             background:
-                radial-gradient(circle at 25% 0, #ffffff, #e3cfff 22%, #8d4cff 38%, #190b33 70%),
-                radial-gradient(circle at 80% 120%, #ff6644, transparent 60%);
+                radial-gradient(circle at 20% 0, #ffffff, #e9ddff 18%, #a855f7 32%, #111827 68%),
+                radial-gradient(circle at 90% 110%, #22c55e, transparent 60%);
             position: relative;
             overflow: hidden;
         }
 
-        .raven-icon::before,
-        .raven-icon::after {
+        .raven-icon::before {
             content: "";
             position: absolute;
-            inset: 7px 5px;
+            width: 140%;
+            height: 70%;
+            left: -18%;
+            top: 26%;
             border-radius: 999px;
-            border: 2px solid rgba(5, 5, 16, 0.95);
-            border-top-color: transparent;
-            border-left-color: transparent;
-            transform: rotate(-38deg);
+            background: linear-gradient(120deg, #020617, #111827);
+            transform: rotate(-18deg);
         }
 
         .raven-icon::after {
-            inset: 12px 10px;
-            opacity: 0.7;
+            content: "";
+            position: absolute;
+            width: 40%;
+            height: 40%;
+            right: -4%;
+            top: 22%;
+            border-radius: 999px;
+            background: linear-gradient(130deg, #020617, #0f172a);
+            box-shadow: -6px 2px 12px rgba(0,0,0,0.9);
         }
 
         .brand-title {
@@ -145,7 +153,7 @@
             bottom: 0;
             height: 2px;
             width: 0;
-            background: linear-gradient(90deg, var(--accent), var(--gold-muted));
+            background: linear-gradient(90deg, var(--accent-green), var(--accent-violet));
             transition: width 0.2s ease-out;
         }
 
@@ -175,11 +183,12 @@
             align-items: stretch;
         }
 
-        /* Studio layout reuses hero + cards */
+        /* HERO / STUDIO */
+
         .hero {
             background:
-                radial-gradient(circle at top left, var(--accent-soft), transparent 55%),
-                radial-gradient(circle at bottom right, rgba(176, 47, 75, 0.25), transparent 60%);
+                radial-gradient(circle at top left, var(--accent-soft-violet), transparent 55%),
+                radial-gradient(circle at bottom right, var(--accent-soft-green), transparent 60%);
             border-radius: 26px;
             padding: 24px 22px 22px;
             border: 1px solid rgba(255, 255, 255, 0.06);
@@ -192,8 +201,8 @@
             position: absolute;
             inset: -40%;
             background-image:
-                radial-gradient(circle at 10% 10%, rgba(255,255,255,0.05) 0, transparent 55%),
-                radial-gradient(circle at 80% 70%, rgba(10, 3, 30, 0.9) 0, transparent 55%);
+                radial-gradient(circle at 10% 10%, rgba(255,255,255,0.06) 0, transparent 55%),
+                radial-gradient(circle at 80% 70%, rgba(8, 16, 40, 0.9) 0, transparent 55%);
             mix-blend-mode: soft-light;
             opacity: 0.9;
             pointer-events: none;
@@ -210,7 +219,7 @@
         }
 
         .hero-title {
-            font-size: clamp(2.1rem, 4vw, 2.6rem);
+            font-size: clamp(2.1rem, 4vw, 2.5rem);
             line-height: 1.15;
             margin-bottom: 10px;
             position: relative;
@@ -218,23 +227,18 @@
         }
 
         .hero-title span {
-            background: linear-gradient(120deg, #ffffff, #f2e6ff, #e29a5f);
+            background: linear-gradient(120deg, #ffffff, #bbf7d0, #e9d5ff);
             -webkit-background-clip: text;
             color: transparent;
         }
 
         .hero-sub {
             font-size: 0.96rem;
-            color: var(--text-muted);
+            color: var(--text-main);
             max-width: 480px;
             margin-bottom: 16px;
             position: relative;
             z-index: 1;
-        }
-
-        .hero-sub strong {
-            color: var(--text-main);
-            font-weight: 600;
         }
 
         .hero-actions {
@@ -261,9 +265,9 @@
         }
 
         .btn-primary {
-            background: radial-gradient(circle at top left, #ffffff, #d2b2ff 40%, #c46bff 100%);
-            color: #1a102b;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.65);
+            background: radial-gradient(circle at top left, #ffffff, #bbf7d0 30%, #22c55e 70%);
+            color: #052e16;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.7);
         }
 
         .btn-primary span.arrow {
@@ -303,7 +307,7 @@
             width: 6px;
             height: 6px;
             border-radius: 999px;
-            background: var(--accent-blood);
+            background: var(--accent-green);
         }
 
         .card {
@@ -326,14 +330,14 @@
         }
 
         .card-title {
-            font-size: 1.02rem;
+            font-size: 1.05rem;
             margin-bottom: 5px;
-            color: var(--gold-muted);
+            color: var(--accent-green);
         }
 
         .card-body {
             font-size: 0.9rem;
-            color: var(--text-muted);
+            color: var(--text-main);
         }
 
         .pill-row {
@@ -349,21 +353,20 @@
             letter-spacing: 0.16em;
             border-radius: 999px;
             padding: 3px 9px;
-            border: 1px solid rgba(255,255,255,0.15);
-            color: var(--text-muted);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: var(--text-main);
         }
 
         .pill.highlight {
-            border-color: var(--accent);
-            color: #f0e4ff;
-            background: rgba(196, 107, 255, 0.08);
+            border-color: var(--accent-violet);
+            background: rgba(168, 85, 247, 0.16);
         }
 
         .list-compact {
             margin-top: 5px;
             list-style: none;
             font-size: 0.86rem;
-            color: var(--text-muted);
+            color: var(--text-main);
         }
 
         .list-compact li {
@@ -372,30 +375,55 @@
 
         .list-compact li::before {
             content: "– ";
-            color: var(--accent);
+            color: var(--accent-violet);
         }
+
+        /* Colores de personajes */
+
+        .char-lyriel {
+            color: var(--accent-green);
+            font-weight: 700;
+        }
+
+        .char-death {
+            color: var(--accent-violet);
+            font-weight: 700;
+        }
+
+        .game-name {
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        /* Redes sociales centradas y bien proporcionadas */
 
         .social-row {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 9px;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         .social-link {
-            font-size: 0.84rem;
+            font-size: 0.86rem;
             text-decoration: none;
             color: var(--text-main);
-            padding: 5px 9px;
+            padding: 6px 12px;
             border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.14);
+            border: 1px solid rgba(255,255,255,0.18);
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 8px;
+            min-height: 34px;
         }
 
         .social-link span.icon {
-            font-size: 1rem;
+            font-size: 1.05rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 20px;
         }
 
         .social-link.linkedin span.icon {
@@ -406,7 +434,9 @@
             color: #000000;
             background: #ffffff;
             border-radius: 999px;
-            padding: 0 4px;
+            width: 20px;
+            height: 20px;
+            font-size: 0.9rem;
         }
 
         .social-link.instagram span.icon {
@@ -420,10 +450,11 @@
         }
 
         .social-link:hover {
-            border-color: var(--accent);
+            border-color: var(--accent-green);
         }
 
-        /* Project view */
+        /* PROJECT VIEW */
+
         .view-project.active {
             grid-template-columns: minmax(0, 3.2fr) minmax(0, 2fr);
         }
@@ -442,17 +473,13 @@
         }
 
         .game-title span {
-            color: var(--gold-muted);
+            color: var(--accent-green);
         }
 
         .paragraph {
             font-size: 0.92rem;
-            color: var(--text-muted);
-            margin-bottom: 8px;
-        }
-
-        .paragraph strong {
             color: var(--text-main);
+            margin-bottom: 8px;
         }
 
         .tag-row {
@@ -468,39 +495,44 @@
             letter-spacing: 0.16em;
             padding: 3px 8px;
             border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.16);
-            color: var(--text-muted);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: var(--text-main);
         }
 
         .tag.combat {
-            border-color: var(--accent-blood);
-            color: #f7dde1;
+            border-color: var(--accent-violet);
         }
 
-        /* Contact view */
-        .contact-layout {
-            display: grid;
-            grid-template-columns: minmax(0, 2.4fr) minmax(0, 2.4fr);
-            gap: 22px;
-            width: 100%;
-        }
+        /* CONTACT VIEW – todo centrado */
 
         .view-contact.active {
-            display: block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .contact-layout > section {
+        .contact-panel {
             background: var(--card);
             border-radius: 22px;
-            padding: 16px 18px 18px;
+            padding: 18px 22px 20px;
             border: 1px solid var(--border-subtle);
+            max-width: 520px;
+            width: 100%;
+            text-align: center;
         }
 
         form {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-top: 6px;
+            margin-top: 10px;
+            align-items: center;
+        }
+
+        .form-row {
+            width: 100%;
+            max-width: 420px;
+            text-align: left;
         }
 
         label {
@@ -514,9 +546,10 @@
         input[type="email"],
         textarea {
             margin-top: 4px;
-            background: rgba(4, 4, 12, 0.9);
+            width: 100%;
+            background: rgba(3, 7, 18, 0.95);
             border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.18);
             padding: 7px 9px;
             color: var(--text-main);
             font-family: inherit;
@@ -525,19 +558,25 @@
 
         textarea {
             resize: vertical;
-            min-height: 80px;
-            max-height: 130px;
+            min-height: 90px;
+            max-height: 140px;
         }
 
         input:focus,
         textarea:focus {
             outline: none;
-            border-color: var(--accent);
+            border-color: var(--accent-violet);
         }
 
         .btn-submit {
-            align-self: flex-start;
-            margin-top: 4px;
+            align-self: center;
+            margin-top: 6px;
+        }
+
+        .contact-extra {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--text-main);
         }
 
         footer {
@@ -551,7 +590,7 @@
             display: block;
             margin-top: 3px;
             font-size: 0.7rem;
-            opacity: 0.85;
+            opacity: 0.9;
         }
 
         @media (max-width: 900px) {
@@ -575,12 +614,6 @@
             }
             nav {
                 font-size: 0.78rem;
-            }
-            .content-area {
-                margin-top: 4px;
-            }
-            .contact-layout {
-                grid-template-columns: 1fr;
             }
             footer {
                 text-align: left;
@@ -610,15 +643,16 @@
             <!-- STUDIO VIEW -->
             <section class="view view-studio active" id="studio">
                 <section class="hero">
-                    <div class="hero-tagline">Dark fantasy • Independent vision</div>
+                    <div class="hero-tagline">Dark fantasy • Indie studio</div>
                     <h1 class="hero-title">
                         Story-driven games<br />
-                        <span>for those who walk with shadows.</span>
+                        <span>where ravens whisper in the dark.</span>
                     </h1>
                     <p class="hero-sub">
                         Ravenwhisp Studios is a small team crafting
-                        <strong>dark fantasy worlds</strong> where choices have weight
-                        and every encounter whispers of forgotten pacts and broken oaths.
+                        dark fantasy experiences where every choice
+                        echoes through the bond between
+                        <span class="char-lyriel">Lýriel</span> and <span class="char-death">Death</span>.
                     </p>
 
                     <div class="hero-actions">
@@ -643,13 +677,14 @@
                         <div class="card-title">Bound By Death</div>
                         <div class="card-body">
                             A cooperative isometric hack &amp; slash where you play as
-                            <strong>Lýriel</strong>, a young elf bound to <strong>Death</strong> by a forbidden ritual.
-                            Together, they must face a kingdom that fears them as much
+                            <span class="char-lyriel">Lýriel</span>, a young elf bound to
+                            <span class="char-death">Death</span> by a forbidden ritual.
+                            Together, they face a kingdom that fears them as much
                             as it needs them.
                             <ul class="list-compact">
-                                <li>Fast-paced melee combat and synergies between Lýriel &amp; <strong>Death</strong></li>
+                                <li>Synergies between <span class="char-lyriel">Lýriel</span> &amp; <span class="char-death">Death</span> in fast-paced combat</li>
                                 <li>Exploration of cursed elven ruins and ritual chambers</li>
-                                <li>Focus on atmosphere, lore and emotional storytelling</li>
+                                <li>Atmosphere, lore and emotional storytelling as core pillars</li>
                             </ul>
                             <div class="pill-row">
                                 <span class="pill highlight">PC prototype</span>
@@ -662,14 +697,14 @@
                     <section class="card">
                         <div class="card-heading">Follow the ravens</div>
                         <div class="card-body">
-                            Stay close for development updates, behind-the-scenes looks,
-                            and new glimpses into the world of <strong>Bound By Death</strong>.
+                            Follow us for devlogs, prototypes and new glimpses
+                            into the world of <span class="game-name">Bound By Death</span>.
                             <div class="social-row">
                                 <a href="#" class="social-link linkedin" target="_blank" rel="noopener">
                                     <span class="icon">in</span> LinkedIn
                                 </a>
                                 <a href="#" class="social-link x" target="_blank" rel="noopener">
-                                    <span class="icon">𝕏</span> Twitter / X
+                                    <span class="icon">X</span> Twitter / X
                                 </a>
                                 <a href="#" class="social-link instagram" target="_blank" rel="noopener">
                                     <span class="icon">◎</span> Instagram
@@ -689,21 +724,28 @@
                     <div class="section-title">Project</div>
                     <h2 class="game-title"><span>Bound By Death</span></h2>
                     <p class="paragraph">
-                        In the elven kingdom of Lýndoril, a desperate king defied the natural order
-                        to save his newborn daughter, Lýriel. A forbidden ritual chained her soul
-                        to <strong>Death</strong> itself, turning the reaper into her eternal shadow.
-                        Years later, kingdom and daughter both pay the price of that choice.
+                        In the elven kingdom of Lýndoril, a desperate king defied the
+                        natural order to save his newborn daughter,
+                        <span class="char-lyriel">Lýriel</span>. A forbidden ritual chained her soul
+                        to <span class="char-death">Death</span> itself, turning the reaper into her
+                        eternal shadow. Years later, both kingdom and child pay
+                        the price of that choice.
                     </p>
                     <p class="paragraph">
-                        <strong>Bound By Death</strong> is a cooperative isometric hack &amp; slash focused on
-                        tight combat and narrative. One player controls Lýriel, agile and precise,
-                        while the other embodies <strong>Death</strong>, a spectral force that bends the battlefield
-                        with area control, executions and terrifying presence.
+                        <span class="game-name">Bound By Death</span> is a cooperative isometric
+                        hack &amp; slash focused on tight combat and narrative.
+                        One player controls <span class="char-lyriel">Lýriel</span>, agile and precise,
+                        while the other becomes <span class="char-death">Death</span>, a spectral force
+                        that bends the battlefield with control, executions
+                        and pure inevitability.
                     </p>
                     <p class="paragraph">
-                        Together they explore ritual chambers, haunted forests and war-torn cities,
-                        hunted by those who fear what they have become. Lýriel seeks a way to reclaim
-                        her own life; <strong>Death</strong> seeks balance in a world that has tried to cheat it.
+                        Together they explore ritual chambers, haunted forests
+                        and war-torn cities, hunted by those who want to destroy
+                        what never should have existed. <span class="char-lyriel">Lýriel</span> seeks
+                        a way to reclaim her life;
+                        <span class="char-death">Death</span> seeks balance in a world that
+                        tried to cheat it.
                     </p>
                     <div class="tag-row">
                         <span class="tag combat">Co-op hack &amp; slash</span>
@@ -718,8 +760,8 @@
                         <div class="card-heading">Gameplay pillars</div>
                         <div class="card-body">
                             <ul class="list-compact">
-                                <li><strong>Duo combat:</strong> intertwined abilities between Lýriel &amp; <strong>Death</strong></li>
-                                <li><strong>Risk &amp; reward:</strong> powerful rituals with a lasting cost</li>
+                                <li><strong>Duo combat:</strong> intertwined abilities between <span class="char-lyriel">Lýriel</span> &amp; <span class="char-death">Death</span></li>
+                                <li><strong>Risk &amp; reward:</strong> powerful rituals with lasting costs</li>
                                 <li><strong>Co-op first:</strong> designed to be experienced together</li>
                                 <li><strong>Atmosphere:</strong> strong art direction and soundscape</li>
                             </ul>
@@ -729,8 +771,9 @@
                         <div class="card-heading">Target experience</div>
                         <div class="card-body">
                             A short, replayable adventure where each run reveals more
-                            about the pact between Lýriel and <strong>Death</strong>, and the true
-                            consequences of binding a mortal soul to the inevitable.
+                            about the pact between <span class="char-lyriel">Lýriel</span> and
+                            <span class="char-death">Death</span>, and the true consequences
+                            of binding a mortal soul to the inevitable.
                         </div>
                     </section>
                 </aside>
@@ -738,60 +781,42 @@
 
             <!-- CONTACT VIEW -->
             <section class="view view-contact" id="contact">
-                <div class="contact-layout">
-                    <section>
-                        <div class="section-title">Contact</div>
-                        <h2 class="game-title"><span>Reach Ravenwhisp Studios</span></h2>
-                        <p class="paragraph">
-                            For collaboration, feedback or press inquiries about
-                            <strong>Bound By Death</strong> or future projects, you can send us a message
-                            directly through this form. Your message will be delivered to:
-                            <strong>ravenwhispstudios@gmail.com</strong>.
-                        </p>
+                <div class="contact-panel">
+                    <div class="section-title">Contact</div>
+                    <h2 class="game-title"><span>Reach Ravenwhisp Studios</span></h2>
+                    <p class="paragraph">
+                        For collaboration, feedback or press inquiries about
+                        <span class="game-name">Bound By Death</span> or future projects,
+                        send us a message. Your email will be delivered to:
+                        <strong>ravenwhispstudios@gmail.com</strong>.
+                    </p>
 
-                        <form action="mailto:ravenwhispstudios@gmail.com" method="POST" enctype="text/plain">
-                            <div>
-                                <label for="name">Name</label>
-                                <input type="text" id="name" name="Name" required />
-                            </div>
-                            <div>
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="Email" required />
-                            </div>
-                            <div>
-                                <label for="subject">Subject</label>
-                                <input type="text" id="subject" name="Subject" />
-                            </div>
-                            <div>
-                                <label for="message">Message</label>
-                                <textarea id="message" name="Message" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-submit">
-                                Send message
-                            </button>
-                        </form>
-                    </section>
-
-                    <section>
-                        <div class="card-heading">Direct details</div>
-                        <div class="card-body" style="margin-top:4px;">
-                            <p class="paragraph">
-                                <strong>Email:</strong> ravenwhispstudios@gmail.com<br />
-                                <strong>Studio:</strong> Ravenwhisp Studios<br />
-                                <strong>Focus:</strong> Dark fantasy, narrative-driven co-op games.
-                            </p>
-                            <p class="paragraph">
-                                We are currently focused on building the prototype of
-                                <strong>Bound By Death</strong>. We are open to feedback from players,
-                                fellow developers, and potential partners interested in
-                                atmospheric co-op action games.
-                            </p>
-                            <p class="paragraph">
-                                You can also reach us via our social channels listed on the
-                                <strong>Studio</strong> page.
-                            </p>
+                    <form action="mailto:ravenwhispstudios@gmail.com" method="POST" enctype="text/plain">
+                        <div class="form-row">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="Name" required />
                         </div>
-                    </section>
+                        <div class="form-row">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="Email" required />
+                        </div>
+                        <div class="form-row">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" name="Subject" />
+                        </div>
+                        <div class="form-row">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-submit">
+                            Send message
+                        </button>
+                    </form>
+
+                    <div class="contact-extra">
+                        You can also reach us through our social channels listed
+                        on the <strong>Studio</strong> page.
+                    </div>
                 </div>
             </section>
         </div>
@@ -819,22 +844,10 @@
 
     function setActiveView(name) {
         Object.keys(views).forEach(key => {
-            if (key === name) {
-                views[key].classList.add("active");
-                views[key].classList.contains("view-contact")
-                    ? views[key].classList.add("view-contact-active")
-                    : null;
-            } else {
-                views[key].classList.remove("active");
-            }
+            views[key].classList.toggle("active", key === name);
         });
-
         navLinks.forEach(link => {
-            if (link.dataset.view === name) {
-                link.classList.add("active");
-            } else {
-                link.classList.remove("active");
-            }
+            link.classList.toggle("active", link.dataset.view === name);
         });
     }
 
